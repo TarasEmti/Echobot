@@ -6,10 +6,19 @@ from flask import Flask, request
 app = Flask(__name__)
 
 global bot
-bot = telegram.Bot(token='566786956:AAEACP90bJLHhl0jrvTcuONCRWsZ_F16G2s')
+
+token = '566786956:AAEACP90bJLHhl0jrvTcuONCRWsZ_F16G2s'
+bot = telegram.Bot(token=token)
+
+WEBHOOK_HOST = 'echo-219615.appspot.com'
+WEBHOOK_PORT = 8443 # 443, 80, 88 or 8443 (port need to be 'open')
+WEBHOOK_LISTEN = '0.0.0.0'
+
+WEBHOOK_URL_BASE = "https://%s:%s" % (WEBHOOK_HOST, WEBHOOK_PORT)
+WEBHOOK_URL_PATH = "/%s/" % token
 
 
-@app.route('/HOOK', methods=['POST'])
+@app.route(WEBHOOK_URL_PATH, methods=['POST'])
 def webhook_handler():
     if request.method == "POST":
         # retrieve the message in JSON and then transform it to Telegram object
@@ -28,7 +37,7 @@ def webhook_handler():
 
 @app.route('/set_webhook', methods=['GET', 'POST'])
 def set_webhook():
-    s = bot.setWebhook('https://echo-219615.appspot.com/HOOK')
+    s = bot.setWebhook(WEBHOOK_URL_BASE+WEBHOOK_URL_PATH)
     if s:
         return "webhook setup ok"
     else:

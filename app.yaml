@@ -3,7 +3,7 @@ threadsafe: yes
 
 handlers:
 - url: .*
-  script: bot_gae.app
+  script: bot.app
 
 libraries:
 - name: webapp2
