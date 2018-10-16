@@ -28,7 +28,7 @@ def webhook_handler():
 
 @app.route('/set_webhook', methods=['GET', 'POST'])
 def set_webhook():
-    s = bot.setWebhook('https://URL/HOOK')
+    s = bot.setWebhook('https://echo-219615.appspot.com/HOOK')
     if s:
         return "webhook setup ok"
     else:
