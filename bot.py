@@ -5,8 +5,6 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-global bot
-
 token = '566786956:AAEACP90bJLHhl0jrvTcuONCRWsZ_F16G2s'
 bot = telegram.Bot(token=token)
 

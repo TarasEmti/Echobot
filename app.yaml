@@ -3,3 +3,5 @@ runtime: python37
 handlers:
 - url: .*
   script: bot.app
+
+entrypoint: gunicorn -b :$PORT bot:app
